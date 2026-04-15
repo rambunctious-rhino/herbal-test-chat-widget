@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herbal Renaissance — Natural Wellness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #f9f4ec;
+      --sage:     #7a9e7e;
+      --deep:     #2e4a35;
+      --bark:     #8b6244;
+      --gold:     #c9a84c;
+      --muted:    #6b6b5e;
+      --white:    #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--deep);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 6vw;
+      background: rgba(249,244,236,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(122,158,126,.25);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--deep);
+      letter-spacing: .02em;
+      text-decoration: none;
+    }
+    .logo span { color: var(--sage); }
+
+    nav a.cta-nav {
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--deep);
+      padding: .55rem 1.4rem;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background .25s;
+    }
+    nav a.cta-nav:hover { background: var(--sage); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 7rem 6vw 4rem;
+      overflow: hidden;
+    }
+
+    /* Decorative botanical circle */
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -8vw;
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(55vw, 700px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, rgba(122,158,126,.22) 0%, rgba(201,168,76,.10) 60%, transparent 80%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.2rem;
+      padding-bottom: .3rem;
+      border-bottom: 1.5px solid var(--gold);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.12;
+      color: var(--deep);
+      margin-bottom: 1.4rem;
+    }
+    h1 em { font-style: italic; color: var(--sage); }
+
+    .hero p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 480px;
+      margin-bottom: 2.2rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--deep);
+      color: var(--white);
+      padding: .85rem 2.2rem;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background .25s, transform .2s;
+    }
+    .btn-primary:hover { background: var(--sage); transform: translateY(-2px); }
+
+    .btn-secondary {
+      display: inline-block;
+      margin-left: 1rem;
+      color: var(--deep);
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--gold);
+      padding-bottom: 2px;
+      transition: color .2s;
+    }
+    .btn-secondary:hover { color: var(--sage); }
+
+    /* ── LEAF DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0 6vw;
+      margin: 0 0 3.5rem;
+    }
+    .divider-line { flex: 1; height: 1px; background: rgba(122,158,126,.3); }
+    .divider svg { flex-shrink: 0; }
+
+    /* ── FEATURES ── */
+    .features {
+      padding: 4rem 6vw 6rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      position: relative;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid rgba(122,158,126,.2);
+      border-radius: 4px;
+      padding: 2rem 1.8rem;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .card:hover { box-shadow: 0 8px 30px rgba(46,74,53,.09); transform: translateY(-3px); }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(122,158,126,.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.4rem;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--deep);
+      margin-bottom: .6rem;
+    }
+    .card p {
+      font-size: .9rem;
+      line-height: 1.7;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* ── CTA STRIP ── */
+    .cta-strip {
+      background: var(--deep);
+      color: var(--white);
+      padding: 4.5rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-strip h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      max-width: 520px;
+    }
+    .cta-strip h2 em { font-style: italic; color: var(--gold); }
+
+    .btn-light {
+      display: inline-block;
+      background: var(--cream);
+      color: var(--deep);
+      padding: .85rem 2.2rem;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      white-space: nowrap;
+      transition: background .25s;
+    }
+    .btn-light:hover { background: var(--gold); color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid rgba(122,158,126,.2);
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--sage); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content > * {
+      opacity: 0;
+      animation: fadeUp .7s ease forwards;
+    }
+    .hero-content > *:nth-child(1) { animation-delay: .1s; }
+    .hero-content > *:nth-child(2) { animation-delay: .25s; }
+    .hero-content > *:nth-child(3) { animation-delay: .4s; }
+    .hero-content > *:nth-child(4) { animation-delay: .55s; }
+
+    .card { opacity: 0; animation: fadeUp .6s ease forwards; }
+    .card:nth-child(1) { animation-delay: .1s; }
+    .card:nth-child(2) { animation-delay: .22s; }
+    .card:nth-child(3) { animation-delay: .34s; }
+
+    @media (max-width: 640px) {
+      .cta-strip { text-align: center; justify-content: center; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="https://herbalrenaissance.co/">Herbal <span>Renaissance</span></a>
+    <a class="cta-nav" href="https://herbalrenaissance.co/">Visit Our Store</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">Rooted in Nature &bull; Backed by Tradition</span>
+      <h1>Your Wellness Journey<br>Starts <em>Here</em></h1>
+      <p>
+        Premium herbal teas, supplements, and wildcrafted sea moss — crafted to help you thrive naturally.
+        Have questions? Our team is here to guide you.
+      </p>
+      <div>
+        <a class="btn-primary" href="https://herbalrenaissance.co/">Shop Now</a>
+        <a class="btn-secondary" href="https://herbalrenaissance.co/products/consultation">Book a Consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAF DIVIDER -->
+  <div class="divider">
+    <div class="divider-line"></div>
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 2C14 2 4 8 4 16C4 21.52 8.48 26 14 26C19.52 26 24 21.52 24 16C24 8 14 2 14 2Z" fill="#7a9e7e" opacity=".5"/>
+      <path d="M14 26V10" stroke="#2e4a35" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- FEATURE CARDS -->
+  <section class="features">
+    <div class="card">
+      <div class="card-icon">🌿</div>
+      <h3>Wildcrafted &amp; Pure</h3>
+      <p>Every product is thoughtfully sourced — wildcrafted sea moss, herbal teas, and supplements free from fillers and artificial additives.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🍵</div>
+      <h3>Blends That Heal</h3>
+      <p>From stress &amp; sleep support to heart health and immune boosts — our herbal collection addresses the whole person, naturally.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <h3>Expert Guidance</h3>
+      <p>Not sure where to start? Chat with us below or book a one-on-one health consultation with our herbalists.</p>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <div class="cta-strip">
+    <h2>Ready to feel the difference of <em>real</em> herbal wellness?</h2>
+    <a class="btn-light" href="https://herbalrenaissance.co/">Explore All Products</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025 Herbal Renaissance. All rights reserved.</span>
+    <span>
+      <a href="https://herbalrenaissance.co/">herbalrenaissance.co</a> &nbsp;·&nbsp;
+      <a href="https://herbalrenaissance.co/pages/about-us">About Us</a> &nbsp;·&nbsp;
+      <a href="https://herbalrenaissance.co/products/consultation">Consultation</a>
+    </span>
+  </footer>
+
+  <!-- CHAT WIDGET -->
+  <script
+    src="https://widgets.leadconnectorhq.com/loader.js"
+    data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+    data-widget-id="69d934a8d0d6ea73edeac867">
+  </script>
+
+</body>
+</html>
